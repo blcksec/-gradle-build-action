@@ -1,3 +1,4 @@
+import * as core from '@actions/core'
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -22,6 +23,7 @@ export function loadBuildResults(): BuildResult[] {
         // Every file in the .build-results dir should be a BuildResults JSON
         const filePath = path.join(buildResultsDir, file)
         const content = fs.readFileSync(filePath, 'utf8')
+        core.debug(`Found build results at '${filePath}': ${content}`)
         return JSON.parse(content) as BuildResult
     })
 }

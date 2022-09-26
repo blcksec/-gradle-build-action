@@ -120,9 +120,11 @@ class BuildResults {
         // Overwrite any contents written by buildFinished or build service, since this result is a superset.
         if (buildResultsFile.exists()) {
             if (overwrite) {
+                println "Overwriting build results in ${buildResultsFile}"
                 buildResultsFile.text = groovy.json.JsonOutput.toJson(buildResults)
             }
         } else {
+            println "Writing build results to ${buildResultsFile}"
             buildResultsFile << groovy.json.JsonOutput.toJson(buildResults)
         }
     }

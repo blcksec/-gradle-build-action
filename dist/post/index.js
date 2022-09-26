@@ -64647,6 +64647,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.loadBuildResults = void 0;
+const core = __importStar(__nccwpck_require__(2186));
 const fs = __importStar(__nccwpck_require__(7147));
 const path = __importStar(__nccwpck_require__(1017));
 function loadBuildResults() {
@@ -64657,6 +64658,7 @@ function loadBuildResults() {
     return fs.readdirSync(buildResultsDir).map(file => {
         const filePath = path.join(buildResultsDir, file);
         const content = fs.readFileSync(filePath, 'utf8');
+        core.debug(`Found build results at '${filePath}': ${content}`);
         return JSON.parse(content);
     });
 }
